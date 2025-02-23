@@ -24,3 +24,11 @@ We will code it into #file:ci.yml
 @workspace our first job will be to build. our second job will be to run the tests, which i believe is an npm test on the backend and a cypress test on the frontend.
 We will also run this job whenever a pull request is created to main branch
 
+# 6
+
+building backend failed. Full stacktrace is:
+
+```
+full stacktrace copied here
+```
+
