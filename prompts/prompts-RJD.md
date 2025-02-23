@@ -32,3 +32,20 @@ building backend failed. Full stacktrace is:
 full stacktrace copied here
 ```
 
+# 7
+
+now our frontend build failed. The log is:
+
+```
+full stacktrace copied here
+```
+
+# 8
+
+@workspace lets try to run our frontend tests locally. Guide me through it
+
+# 9
+
+i dont see any frontend tests, lets remove it from the test job
+
+# 10
