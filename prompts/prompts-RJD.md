@@ -49,3 +49,66 @@ full stacktrace copied here
 i dont see any frontend tests, lets remove it from the test job
 
 # 10
+
+@workspace both jobs were executed successfully. I suppose our next step is creating the job to execute our terraform script. if this is correct, lets start by reviewing our terraform scripts, getting all our environmental variables needed and configuring the new job. 
+For the AWS steps provide detailed description on what i should do
+
+# 11
+
+@workspace guide me on getting the info requested on these variables
+
+Step 2: Identify Environment Variables
+From the provided context, the following environment variables are commonly used in Terraform configurations for AWS:
+
+AWS_ACCESS_KEY_ID: Your AWS access key ID.
+AWS_SECRET_ACCESS_KEY: Your AWS secret access key.
+AWS_DEFAULT_REGION: The AWS region to deploy resources (e.g., us-east-1).
+S3_BUCKET: The S3 bucket to store code.
+PROJECT_NAME: The name of the project.
+
+# 12 - ChatGPT 4o
+
+I need help setting up a github action deployment into an AWS using terraform. I have no knowledge on AWS but i know terraform can create the users, group, roles, the s3 bucket and everything. My AWS account has a root user with MFA and no active access keys and nothing else. Act as an expert devops with aws knowledge and guide me into setting up my aws account to allow my repository to do a deployment using terraform and github actions.
+
+# 13
+
+in this point 
+
+1.2 Create an IAM User:
+	•	Go to Users → Add Users
+	•	Name: terraform-github-actions
+	•	Access Type: Select Programmatic access (Needed for GitHub Actions)
+	•	Click Next: Permissions
+
+I dont see a check for programmatic access. did this change? 
+
+# 14
+
+I will go with access key for this test. I also need to create a free trial account on datadog and set it up on my terraform. Can you walkthrough me with this setup? Im on macos 
+
+# 15 - Copilot 4o
+
+our first goal should be to setup the AWS s3 bucket, iam user, iam role, iam group, ec2 instance. the minimum needed to start a deployment. I need your help achieving this.
+
+# 16
+
+@workspace how does our terraform scripts work in this case? what will be the steps it will take
+
+# 17
+
+@workspace our deploy is working with terraform, can we make make a step to test our environment variables? the ones needed to be set in our project
+
+# 18
+
+@workspace we also need to test our datadog variables
+
+# 19
+
+what variables do we have and where do they need to be set?
+
+# 20
+
+@workspace isnt our terraform IaC supposed to deal with s3 bucket? also what is our project name referring to?
+
+# 21
+
