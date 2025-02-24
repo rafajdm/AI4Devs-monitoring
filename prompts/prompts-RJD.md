@@ -112,3 +112,31 @@ what variables do we have and where do they need to be set?
 
 # 21
 
+so even though terraform is dealing with the s3 bucket, we need to set the secret on github?
+
+# 22
+
+selected step failed with error:
+
+```
+Run curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0 39.1M    0 64967    0     0   477k      0  0:01:23 --:--:--  0:01:23  477k
+100 39.1M  100 39.1M    0     0  91.4M      0 --:--:-- --:--:-- --:--:-- 91.2M
+sudo: installer: command not found
+Error: Process completed with exit code 1.
+```
+
+# 23
+
+new error setting up aws cli
+
+```
+full stacktrace copied here
+```
+
+# 24
+
