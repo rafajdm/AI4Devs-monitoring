@@ -352,7 +352,7 @@ variable "iam_instance_profile" {
 
     environment {
         AWS_REGION = 'us-east-1'
-        S3_BUCKET = 'lti-project-code-bucket'
+        S3_BUCKET = 'lti-project-code-bucket-rjd'
         PROJECT_NAME = 'lti-project'
     }
 
@@ -826,7 +826,7 @@ variable "code_bucket" {
               agent any
               environment {
               AWS_REGION = 'us-east-1'
-              S3_BUCKET = 'lti-project-code-bucket'
+              S3_BUCKET = 'lti-project-code-bucket-rjd'
               PROJECT_NAME = 'lti-project'
               }
               stages {
