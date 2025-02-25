@@ -67,3 +67,70 @@ jobs:
       run: |
         cd backend
         npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up AWS CLI
+      run: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install --update
+
+    - name: Configure AWS credentials
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+        aws configure set region ${{ secrets.AWS_DEFAULT_REGION }}
+
+    - name: Test environment variables
+      run: |
+        echo "Testing environment variables..."
+        test -n "$AWS_ACCESS_KEY_ID" && echo "AWS_ACCESS_KEY_ID is set" || (echo "AWS_ACCESS_KEY_ID is not set" && exit 1)
+        test -n "$AWS_SECRET_ACCESS_KEY" && echo "AWS_SECRET_ACCESS_KEY is set" || (echo "AWS_SECRET_ACCESS_KEY is not set" && exit 1)
+        test -n "$AWS_DEFAULT_REGION" && echo "AWS_DEFAULT_REGION is set" || (echo "AWS_DEFAULT_REGION is not set" && exit 1)
+        test -n "$PROJECT_NAME" && echo "PROJECT_NAME is set" || (echo "PROJECT_NAME is not set" && exit 1)
+        test -n "$DATADOG_API_KEY" && echo "DATADOG_API_KEY is set" || (echo "DATADOG_API_KEY is not set" && exit 1)
+        test -n "$DATADOG_APP_KEY" && echo "DATADOG_APP_KEY is set" || (echo "DATADOG_APP_KEY is not set" && exit 1)
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
+        DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+        DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}
+
+    - name: Install Terraform
+      run: |
+        curl -LO https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
+        unzip terraform_1.5.7_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: tf
+
+    - name: Terraform Plan
+      run: terraform plan -var "datadog_api_key=${{ secrets.DATADOG_API_KEY }}" -var "datadog_app_key=${{ secrets.DATADOG_APP_KEY }}"
+      working-directory: tf
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+        DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve -var "datadog_api_key=${{ secrets.DATADOG_API_KEY }}" -var "datadog_app_key=${{ secrets.DATADOG_APP_KEY }}"
+      working-directory: tf
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+        DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}

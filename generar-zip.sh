@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Definir las rutas de los archivos zip
-BACKEND_ZIP="./backend.zip"
-FRONTEND_ZIP="./frontend.zip"
+BACKEND_ZIP="../backend.zip"
+FRONTEND_ZIP="../frontend.zip"
 
 # Función para eliminar un archivo si existe
 remove_zip_if_exists() {
@@ -30,5 +30,5 @@ remove_zip_if_exists "$BACKEND_ZIP"
 remove_zip_if_exists "$FRONTEND_ZIP"
 
 # Crear nuevos archivos zip para backend y frontend
-create_zip_if_dir_exists "backend" "$BACKEND_ZIP"
-create_zip_if_dir_exists "frontend" "$FRONTEND_ZIP"
+create_zip_if_dir_exists "../backend" "$BACKEND_ZIP"
+create_zip_if_dir_exists "../frontend" "$FRONTEND_ZIP"
