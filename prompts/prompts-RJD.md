@@ -228,3 +228,93 @@ What about new terraform plan output:
 full output copied here
 ```
 
+# 33 - Copilot 4o
+
+my github action executed #file:ci.yml and my step `Terraform plan` failed with log output:
+
+```
+Run terraform plan
+  terraform plan
+  shell: /usr/bin/bash -e {0}
+var.datadog_api_key
+  API Key para Datadog
+
+  Enter a value: var.datadog_app_key
+  App Key para Datadog
+
+╷
+│ Error: No value for required variable
+│ 
+│   on main.tf line 24:
+│   24: variable "datadog_api_key" {
+│ 
+│ The root module input variable "datadog_api_key" is not set, and has no
+│ default value. Use a -var or -var-file command line argument to provide a
+│ value for this variable.
+╵
+╷
+│ Error: No value for required variable
+│ 
+│   on main.tf line 29:
+│   29: variable "datadog_app_key" {
+│ 
+│ The root module input variable "datadog_app_key" is not set, and has no
+│ default value. Use a -var or -var-file command line argument to provide a
+│ value for this variable.
+╵
+  Enter a value: 
+Error: Process completed with exit code 1.
+```
+
+# 34
+
+do i need to update my #file:main.tf too with this change?
+
+# 35
+
+@workspace analyze if my terraform files and #file:ci.yml  are using the actions secrets correctly
+
+# 36
+
+my `Terraform plan` step is still failing with the error:
+
+```
+Run terraform plan
+  terraform plan
+  shell: /usr/bin/bash -e {0}
+  env:
+    AWS_ACCESS_KEY_ID: ***
+    AWS_SECRET_ACCESS_KEY: ***
+    DATADOG_API_KEY: ***
+    DATADOG_APP_KEY: ***
+  
+var.datadog_api_key
+  API Key para Datadog
+  Enter a value: var.datadog_app_key
+  App Key para Datadog
+╷
+│ Error: No value for required variable
+│ 
+│   on main.tf line 24:
+│   24: variable "datadog_api_key" {
+│ 
+│ The root module input variable "datadog_api_key" is not set, and has no
+│ default value. Use a -var or -var-file command line argument to provide a
+│ value for this variable.
+╵
+╷
+│ Error: No value for required variable
+│ 
+│   on main.tf line 29:
+│   29: variable "datadog_app_key" {
+│ 
+│ The root module input variable "datadog_app_key" is not set, and has no
+│ default value. Use a -var or -var-file command line argument to provide a
+│ value for this variable.
+╵
+  Enter a value: 
+Error: Process completed with exit code 1.
+```
+
+# 37
+
