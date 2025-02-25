@@ -9,64 +9,64 @@ on:
       - main
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-  #   - name: Set up Node.js
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: '18'
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
 
-  #   - name: Install dependencies
-  #     run: |
-  #       cd frontend
-  #       npm install
-  #       cd ../backend
-  #       npm install
+    - name: Install dependencies
+      run: |
+        cd frontend
+        npm install
+        cd ../backend
+        npm install
 
-  #   - name: Update browserslist database
-  #     run: |
-  #       cd frontend
-  #       npx update-browserslist-db@latest
+    - name: Update browserslist database
+      run: |
+        cd frontend
+        npx update-browserslist-db@latest
 
-  #   - name: Build backend
-  #     run: |
-  #       cd backend
-  #       npm run build
+    - name: Build backend
+      run: |
+        cd backend
+        npm run build
 
-  #   - name: Build frontend
-  #     run: |
-  #       cd frontend
-  #       npm run build
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   needs: build
+  test:
+    runs-on: ubuntu-latest
+    needs: build
 
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-  #   - name: Set up Node.js
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: '18'
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
 
-  #   - name: Install dependencies
-  #     run: |
-  #       cd frontend
-  #       npm install
-  #       cd ../backend
-  #       npm install
+    - name: Install dependencies
+      run: |
+        cd frontend
+        npm install
+        cd ../backend
+        npm install
 
-  #   - name: Run backend tests
-  #     run: |
-  #       cd backend
-  #       npm test
+    - name: Run backend tests
+      run: |
+        cd backend
+        npm test
 
   deploy:
     runs-on: ubuntu-latest
