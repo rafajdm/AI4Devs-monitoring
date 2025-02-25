@@ -140,3 +140,91 @@ full stacktrace copied here
 
 # 24
 
+@workspace can we test terraform plan locally?
+
+# 25
+
+@workspace lets fix the error after executing terraform init one by one.
+
+```
+Initializing the backend...
+╷
+│ Error: Terraform encountered problems during initialisation, including problems
+│ with the configuration, described below.
+│ 
+│ The Terraform configuration must be valid before initialization so that
+│ Terraform can determine which modules and providers need to be installed.
+│ 
+
+╷
+│ Error: Duplicate provider configuration
+│ 
+│   on main.tf line 16:
+│   16: provider "datadog" {
+│ 
+│ A default (non-aliased) provider configuration for "datadog" was already given at datadog.tf:1,1-19. If multiple configurations are required, set
+│ the "alias" argument for alternative configurations.
+╵
+```
+
+# 26
+
+i got an error on datadog
+
+```
+full stack trace copied
+```
+
+# 27 - ChatGPT 4o
+
+what is my datadog api key and app key and how do they look like?
+
+# 28 
+
+analyze my terraform plan and provide feedback on what is happening
+
+```
+full output log pasted here
+```
+
+# 29 - Copilot 4o
+
+@workspace provide help with this point
+
+```
+	3.	AWS S3 Bucket Warnings
+	•	Warnings indicate deprecated attributes in your Terraform S3 configuration:
+	•	acl = "private" should be replaced with aws_s3_bucket_acl.
+	•	aws_s3_bucket_object is deprecated in favor of aws_s3_object.
+```
+
+either on #file:main.tf or #file:s3.tf or any other file required to be updated
+
+# 30
+
+@workspace now provide a fix for this warning:
+```
+2.	Null Resource (null_resource.generate_zip)
+	•	This is a Terraform resource that executes a local action (e.g., running a script to generate a ZIP file).
+	•	The triggers block is changing, which forces a replacement of this resource.
+```
+
+# 31
+
+@workspace now we need to fix this error:
+
+```
+	4.	Critical Error: AWS Provider Authentication Failure
+	•	Terraform cannot authenticate to AWS because no valid credentials are found.
+	•	The error suggests Terraform is attempting to use EC2 instance metadata service (IMDS), which only works on an AWS EC2 instance.
+	•	The error failed to refresh cached credentials confirms Terraform is failing to find credentials locally.
+```
+
+# 32 - ChatGPT 4o
+
+What about new terraform plan output:
+
+```
+full output copied here
+```
+
