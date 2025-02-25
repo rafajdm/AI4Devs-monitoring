@@ -1,5 +1,11 @@
+resource "random_string" "bucket_suffix" {
+  length  = 8
+  special = false
+  upper   = false
+}
+
 resource "aws_s3_bucket" "code_bucket" {
-  bucket = "lti-project-code-bucket"
+  bucket = "lti-project-code-bucket-${random_string.bucket_suffix.result}"
 }
 
 resource "aws_s3_bucket_acl" "code_bucket_acl" {

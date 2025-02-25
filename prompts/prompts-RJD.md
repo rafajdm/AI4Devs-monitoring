@@ -318,3 +318,19 @@ Error: Process completed with exit code 1.
 
 # 37
 
+@workspace my terraform plan failed I suppose cause for a first run my s3 bucket and other executions are not found. Do i need to run a terraform apply first?
+
+# 38 - ChatGPT 4o
+
+help me fix my terraform script. my `terraform apply -auto-approve` failed with output:
+
+``` 
+full output pasted here
+```
+
+# 39 - Copilot 4o
+
+we need to add a suffix to my bucket to make its name unique.
+
+# 40
+
